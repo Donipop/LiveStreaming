@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class IndexController {
 
     @GetMapping("index")
-    public String getMain(){
-
+    public String getIndex(){
         return "/index";
     }
 }
