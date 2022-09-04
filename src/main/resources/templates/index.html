@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Tippy</title>
+    <!-- tippy animation css -->
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale-extreme.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/shift-away.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/dist/backdrop.css"/>
+    <script src="https://unpkg.com/@popperjs/core@2"></script><!-- tippy 사용 위한 연결-->
+    <script src="https://unpkg.com/tippy.js@6"></script><!-- tippy 사용 위한 연결-->
+    <script src="https://unpkg.com/jquery@3.6.1/dist/jquery.js"></script>
+    <link rel="stylesheet" href="../css/doni.css"/>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body class="bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Tenth navbar example" id="navi">       
+        <div class="container-fluid">
+            <a href="#" class="nav-brand"><img src="../img/star.png" width="30" height="36" class="d-inline-block align-text-top"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
+                <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Centered nav only</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled">Disabled</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
+                    <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+      
+    <div class="container">
+        <!--<button class="btnTooltop" style="margin-top: 140px;">make tooltip!</button> -->
+        <!-- <button id="myButton" class="btn btn-dark">My Button</button> -->
+        <!-- 탑 아티클 -->
+        <article class="py-5 text-center container">
+            <div class="row py-lg-5">
+              <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light text-light">123</h1>
+                <p class="lead text-muted">456</p>
+                <p>
+                  <a href="#" class="btn btn-primary my-2">789</a>
+                  <a href="#" class="btn btn-secondary my-2">0123</a>
+                </p>
+              </div>
+            </div>
+        </article>
+        <!-- 방송목록 -->
+        <article class="container d-inline-block text-center">
+            <div class="card bg-dark text-light mx-1 d-inline-block" style="width: 18rem;" id="card">
+                <img src="../img/live_user_jingburger-440x248.jpg" class="card-img-top" alt="123123">
+                <div class="card-body">
+                    <div class="img-round">
+                        <img src="../img/330b695d-63ec-41cb-baca-a191a7bbc441-profile_image-70x70.png" class="profile">
+                    </div>
+                    <div class="card-body2">
+                        <h5 class="card-title text-lg-start">제목</h5>
+                        <p class="card-text text-lg-start">내용~</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card bg-dark text-light mx-1 d-inline-block" style="width: 18rem;" id="card">
+                <img src="../img/live_user_jingburger-440x248.jpg" class="card-img-top">
+                <div class="card-body">
+                    <div class="img-round">
+                        <img src="../img/330b695d-63ec-41cb-baca-a191a7bbc441-profile_image-70x70.png" class="profile" alt="방송이미지">
+                    </div>
+                    <div class="card-body2">
+                        <h5 class="card-title text-lg-start">제목</h5>
+                        <p class="card-text text-lg-start">내용~</p>
+                    </div>
+                </div>
+            </div>
+            
+        </article>
+
+    </div>
+    
+    
+    <script>
+        // tippy 설정
+        tippy('.btnTooltop', {
+            content: 'tippy.js', 	// tooltip 내용
+            placement: 'top', 		// 상단 위치
+            trigger: 'click', 		// :hover가 아닌 click시 노출
+            hideOnClick : 'toggle',	// click시, toggle() 액션
+            //animation: 'shift-away',	// 아래에서 위로 올라오며 등장
+        });
+
+        tippy('#myButton', {
+            content: "I'm a Tippy tooltip!",
+            position: 'top',
+    		animation: "shift-away",
+            theme: 'tomato',
+            
+        });
+    </script>
+</body>
+</html>

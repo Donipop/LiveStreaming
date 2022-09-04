@@ -1,0 +1,18 @@
+spring:
+  thymeleaf:
+    prefix=classpath: templates/
+    suffix: .html
+    check-template: true
+    cache: false
+
+  datasource:
+    hikari:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://donipop.com:3306/livestreaming?useUnicode=true&serverTimezone=Asia/Seoul
+      username: doni
+      password: 1234
+      pool-name: TestHikariPool
+
+
+server:
+  port: 2313
