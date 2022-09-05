@@ -2,9 +2,104 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Title</title>
+        <link rel="stylesheet" href="../css/chat.css">
+        <!-- bootstrap -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"/>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- tippy animation css -->
+        <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale-extreme.css"/>
+        <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/shift-away.css"/>
+        <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/dist/backdrop.css"/>
+        <script src="https://unpkg.com/@popperjs/core@2"></script><!-- tippy 사용 위한 연결-->
+        <script src="https://unpkg.com/tippy.js@6"></script><!-- tippy 사용 위한 연결-->
+        <script src="https://unpkg.com/jquery@3.6.1/dist/jquery.js"></script>
+        <script src="../js/chat.js"></script>
 </head>
 <body>
+    <div class="container">
+        <div class="chat">
+            <ul>
+                <div class="sender left">Sender(snder123)</div>
+                <li class="list-unstyled left">상대방 메세지</li>
+                <div class="messager right">Messager(Messager123)</div>
+                <li class="list-unstyled right">나의 메세지</li>
+                <div class="messager right">Messager(Me)</div>
+                <li class="list-unstyled right">나의 메세지</li>
+                <div class="sender left bj">Doni(2313)</div>
+                <li class="list-unstyled left">방장 메세지</li>
+                <div class="sender left">Sender(snder123)</div>
+                <li class="list-unstyled left">상대방 메세지</li>
+                <div class="sender left">Sender(snder123)</div>
+                <li class="list-unstyled left">상대방 메세지</li>
+                <div class="sender left">Sender(snder123)</div>
+                <li class="list-unstyled left">상대방 메세지</li>
+                <div class="sender left">Sender(snder123)</div>
+                <li class="list-unstyled left">상대방 메세지</li>
+                <div class="sender left">Sender(snder123)</div>
+                <li class="list-unstyled left">상대방 메세지</li>
+                <div class="sender left">Sender(snder123)</div>
+                <li class="list-unstyled left">상대방 메세지</li>
+                <div class="sender left">Sender(snder123)</div>
+                <li class="list-unstyled left">상대방 메세지</li>
+                <div class="sender left">Sender(snder123)</div>
+                <li class="list-unstyled left">상대방 메세지</li>
+                <div class="sender left">Sender(snder123)</div>
+                <li class="list-unstyled left">상대방 메세지</li>
+                <div class="sender left">Sender(snder123)</div>
+                <li class="list-unstyled left">상대방 메세지</li>
+                <div class="sender left">Sender(snder123)</div>
+                <li class="list-unstyled left">상대방 메세지</li>
+                <div class="sender left">Sender(snder123)</div>
+                <li class="list-unstyled left">상대방 메세지</li>
+                <div class="sender left">Sender(snder123)</div>
+                <li class="list-unstyled left">상대방 메세지</li>
+                <div class="sender left">Sender(snder123)</div>
+                <li class="list-unstyled left">상대방 메세지</li>
+                <div class="sender left">Sender(snder123)</div>
+                <li class="list-unstyled left">상대방 메세지</li>
+                <div class="sender left">Sender(snder123)</div>
+                <li class="list-unstyled left">상대방 메세지</li>
+            </ul>
+        </div>
+        <div class="div-input">
+            <textarea placeholder="Press Enter for send message."></textarea>
+        </div>
+    </div>
+    <div id="t-profile" style="display: none;">
+        <div class="tippy-profile">
+            <div class="icon">
+                <img class="img-round" src="../img/dde955e8-5fae-44dc-98db-79b3b14afea2-profile_image-70x70.png">
+            </div>
+            <a href="#"><h1>messager(messagerid)</h1></a>
+        </div>
+    </div>
+    <script>
+        const template = document.getElementById('t-profile');
+        //template.style.display = 'block';
+        tippy('.chat ul div', {
+        content: template.innerHTML, 
+        allowHTML: true,
+        placement: 'top-start',
+        animation: "shift-away",
+        trigger: 'click', 		// :hover가 아닌 click시 노출
+        arrow: false,
+        interactive: true,      // message내용 상호작용 가능
+        theme: 'puple',
+        });
 
+        $("body").delegate("textarea", "keyup",function(e){
+            if(e.which == 13){
+                if(!e.shiftKey){
+                    alert(e.target.value);
+                    aa();
+                }
+            }
+        })
+        function aa(){
+            $('textarea').val('');
+        }
+    </script>
 </body>
 </html>
