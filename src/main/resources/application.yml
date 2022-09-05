@@ -4,6 +4,9 @@ spring:
     suffix: .html
     check-template: true
     cache: false
+    check-template-location: true
+  mvc:
+    static-path-pattern: "/static/**"
 
   datasource:
     hikari:
