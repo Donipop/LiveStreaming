@@ -2,12 +2,10 @@ spring:
   thymeleaf:
     prefix=classpath: templates/
     suffix: .html
-    check-template: true
     cache: false
     check-template-location: true
   mvc:
     static-path-pattern: "/static/**"
-
   datasource:
     hikari:
       driver-class-name: com.mysql.cj.jdbc.Driver
@@ -16,6 +14,7 @@ spring:
       password: 1234
       pool-name: TestHikariPool
 
-
+mybatis:
+  mapper-locations: map
 server:
   port: 2313

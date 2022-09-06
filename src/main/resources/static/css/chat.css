@@ -1,0 +1,66 @@
+.chat{
+    border: 1px solid;
+    width:500px;
+    height: 80vh;
+    display: inline-block;
+    font-size: 12pt;
+    color: whitesmoke;
+}
+#chat-ul{
+    list-style: none;
+}
+.div-input textarea{
+    width: 500px;
+    resize: none;
+    height: 100px;
+}
+.bj {
+    color: blue;
+}
+.sender{
+    width: auto;
+    display: inline-block;
+    padding-top: 5px;
+}
+.messager{
+    width: auto;
+    display: inline-block;
+    padding-top: 5px;
+}
+.left{
+    float: left;
+    text-align: left;
+}
+.right{
+    float: right;
+    text-align: right;
+    margin-right: 20px;
+}
+.chat li{
+    width: 90%;
+    display: inline-block;
+}
+.chat .messager,.sender{
+    width: auto;
+    display: inline-block;
+}
+.tippy-profile{
+    width: auto;
+    height: 100%;
+    object-fit: cover;
+}
+.tippy-profile .icon{
+    width: auto;
+    display: inline-block;
+}
+.tippy-profile .img-round{
+    background-color: gainsboro;
+    border-radius: 70%;
+    overflow: hidden;
+    width: 30px;
+}
+.tippy-profile a h1{
+    font-size: 12pt;
+    display: inline-block;
+    margin-left: 10px;
+}

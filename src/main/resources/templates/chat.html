@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Title</title>
 
-        <link rel="stylesheet" th:href="@{../static/css/chat.css}">
+        <link rel="stylesheet" type="text/css" href="/static/css/chat.css">
         <!-- bootstrap -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"/>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -16,28 +16,28 @@
         <script src="https://unpkg.com/@popperjs/core@2"></script><!-- tippy 사용 위한 연결-->
         <script src="https://unpkg.com/tippy.js@6"></script><!-- tippy 사용 위한 연결-->
         <script src="https://unpkg.com/jquery@3.6.1/dist/jquery.js"></script>
-        <script src="../static/js/chat.js"></script>
+        <script src="/static/js/chat.js"></script>
 </head>
 <body>
     <div class="container">
-        <div class="chat">
+        <div class="chat bg-dark">
             <ul id="chat-ul">
-                <div id="chat-div">
-                    <div class="sender left">Sender(snder123)</div>
+                <div clss=chat_div>
+                    <div class="sender left">Sender2(snder123)</div>
                     <li class="list-unstyled left">상대방 메세지</li>
                 </div>
-                <div id="chat-div">
+
+                <div clss=chat_div>
                     <div class="sender left bj">Sender(bangjang)</div>
                     <li class="list-unstyled left">방장 메세지</li>
                 </div>
-                <div id="chat-div">
+
+                <div clss=chat_div>
                     <div class="messager right">Messager(Messager123)</div>
                     <li class="list-unstyled right">나의 메세지</li>
-                <div>
-                <div id="chat-div">
-                    <div class="messager right">Messager(Messager123)</div>
-                    <li class="list-unstyled right">나의 메세지</li>
-                <div>
+                </div>
+
+
             </ul>
         </div>
         <div class="div-input">
@@ -48,17 +48,17 @@
     <div id="t-profile" style="display: none;">
         <div class="tippy-profile">
             <div class="icon">
-                <img class="img-round" src="../static/img/dde955e8-5fae-44dc-98db-79b3b14afea2-profile_image-70x70.png">
+                <img class="img-round" src="../static/img/330b695d-63ec-41cb-baca-a191a7bbc441-profile_image-70x70.png">
             </div>
             <a href="#"><h1>messager(messagerid)</h1></a>
         </div>
     </div>
 
     <div id="messager" style="display: none;">
-            <div id="chat-div">
+            <div clss=chat_div>
                 <div class="messager right">Messager(Messager123)</div>
                 <li class="list-unstyled right">나의 메세지</li>
-            <div>
+            </div>
     </div>
     <script>
         reti();
