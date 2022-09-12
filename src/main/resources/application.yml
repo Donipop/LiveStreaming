@@ -14,7 +14,5 @@ spring:
       password: 1234
       pool-name: TestHikariPool
 
-mybatis:
-  mapper-locations: map
 server:
   port: 2313

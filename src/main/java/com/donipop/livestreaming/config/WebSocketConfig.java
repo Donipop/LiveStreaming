@@ -1,13 +1,23 @@
 package com.donipop.livestreaming.config;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
-import org.springframework.web.socket.server.standard.ServerEndpointExporter;
+import com.donipop.livestreaming.handler.ScoketChatHandler;
 
-@Component
-public class WebSocketConfig{
-    @Bean
-    public ServerEndpointExporter serverEndpointExporter(){
-        return new ServerEndpointExporter();
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.socket.config.annotation.EnableWebSocket;
+import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
+import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
+
+
+@EnableWebSocket
+@Configuration
+@Log4j2
+@RequiredArgsConstructor
+public class WebSocketConfig implements WebSocketConfigurer {
+    @Override
+    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
+        registry.addHandler(new ScoketChatHandler(), "ws/chat").setAllowedOrigins("*");
     }
+
 }
