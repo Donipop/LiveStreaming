@@ -14,6 +14,7 @@ spring:
       password: 1234
       pool-name: TestHikariPool
 mybatis:
-  type-aliases-package: com.donipop.livestreaming.model
+  type-aliases-package: com.donipop.livestreaming.model.dto
+
 server:
   port: 2313
