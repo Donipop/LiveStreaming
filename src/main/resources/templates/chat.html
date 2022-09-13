@@ -22,20 +22,26 @@
     <div class="container">
         <div class="chat bg-dark">
             <ul id="chat-ul">
-                <div clss=chat_div>
-                    <div class="sender left">Sender2(snder123)</div>
-                    <li class="list-unstyled left">상대방 메세지</li>
-                </div>
+                <li>
+                    <div class="chat_div">
+                        <div class="sender left">Sender2(snder123)</div>
+                        <span class="list-unstyled left">상대방 메세지</span>
+                    </div>
+                </li>
 
-                <div clss=chat_div>
-                    <div class="sender left bj">Sender(bangjang)</div>
-                    <li class="list-unstyled left">방장 메세지</li>
-                </div>
+                <li>
+                    <div class="chat_div">
+                        <div class="sender left bj">Sender(bangjang)</div>
+                        <span class="list-unstyled left">방장 메세지</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="chat_div">
+                        <div class="messager right">Messager(Messager123)</div>
+                        <span class="list-unstyled right">나의 메세지</span>
+                    </div>
 
-                <div clss=chat_div>
-                    <div class="messager right">Messager(Messager123)</div>
-                    <li class="list-unstyled right">나의 메세지</li>
-                </div>
+                </li>
 
 
             </ul>
@@ -55,10 +61,10 @@
     </div>
 
     <div id="messager" style="display: none;">
-            <div clss=chat_div>
-                <div class="messager right">Messager(Messager123)</div>
-                <li class="list-unstyled right">나의 메세지</li>
+        <li>
+            <div class="chat_div">
             </div>
+        </li>
     </div>
     <script>
         reti();
@@ -76,24 +82,30 @@
             });
         }
 
+        function addChat(value){
+            const obj = document.getElementById("chat-ul");
+            let clone_chat = $('#messager li').clone();
+
+            let me = `<div class="messager right">Messager(Messager123)</div>` +
+            `<span class="list-unstyled right">${value}</span>`;
+            clone_chat.children().html(me);
+
+            clone_chat.appendTo(obj);
+            console.log(value);
+            reti();
+            $("textarea").val('');
+        }
+
         $("body").delegate("textarea", "keyup",function(e){
             if(e.which == 13){
                 if(!e.shiftKey){
                     //alert(e.target.value);
-                    addChat(e.target.value);
-                    
+                    wsSend(e.target.value);
+
                 }
             }
         })
 
-        function addChat(value){
-            const obj = document.getElementById("chat-ul");
-            const messager = document.getElementById("messager")
-            obj.innerHTML += (messager.innerHTML);
-            //alert(messager.innerHTML)
-            reti();
-            $("textarea").val('');
-        }
         connect();
     </script>
 </body>

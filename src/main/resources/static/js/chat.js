@@ -9,9 +9,11 @@ function wsEvent() {
     ws.onopen = function (data){
         //소켓이 열리면 동작
         console.log("소켓열림");
-        wsSend("안녕하세요 도니입니다");
+       // wsSend("안녕하세요 도니입니다");
     }
 }
 function  wsSend(msg){
+    msg = msg.trim();
     ws.send(msg);
+    addChat(msg);
 }

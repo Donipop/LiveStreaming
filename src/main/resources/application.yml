@@ -9,10 +9,13 @@ spring:
   datasource:
     hikari:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      jdbc-url: jdbc:mysql://donipop.com:3306/livestreaming?useUnicode=true&serverTimezone=Asia/Seoul
+      jdbc-url: jdbc:mysql://52.78.162.166:54994/livestreaming?useUnicode=true&serverTimezone=Asia/Seoul
       username: doni
       password: 1234
       pool-name: TestHikariPool
-
+mybatis:
+  mapper-locations: mybatis/mapper/*.xml
+  config-location: mybatis-config.xml
+  type-aliases-package: com.donipop.livestreaming.model
 server:
   port: 2313

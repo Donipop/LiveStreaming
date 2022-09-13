@@ -9,6 +9,9 @@
 #chat-ul{
     list-style: none;
 }
+#chat-ul span{
+    display: inline-block;
+}
 .div-input textarea{
     width: 500px;
     resize: none;
@@ -36,11 +39,11 @@
     text-align: right;
     margin-right: 20px;
 }
-.chat li{
+.chat span{
     width: 90%;
     display: inline-block;
 }
-.chat .messager,.sender{
+.chat .messager .sender{
     width: auto;
     display: inline-block;
 }
