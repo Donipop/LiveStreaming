@@ -14,8 +14,6 @@ spring:
       password: 1234
       pool-name: TestHikariPool
 mybatis:
-  mapper-locations: mybatis/mapper/*.xml
-  config-location: mybatis-config.xml
   type-aliases-package: com.donipop.livestreaming.model
 server:
   port: 2313
