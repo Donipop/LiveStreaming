@@ -24,11 +24,11 @@ public class SessionService {
     }
 
     public Session findByValue(String u_key){
-        log.info("u_key : ");
-        return sessionMapper.findByValue(u_key);
+        log.info("u_key : " + u_key);
+        return this.sessionMapper.findByValue(u_key);
     }
 
-    public void update(Session session){sessionMapper.update(session);}
+    public void update(Session session){this.sessionMapper.update(session);}
 
     public String createSession(){
         return UUID.randomUUID().toString();

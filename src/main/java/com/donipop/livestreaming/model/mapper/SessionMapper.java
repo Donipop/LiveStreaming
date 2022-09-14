@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface SessionMapper {
     @Select("select * from session where u_key = #{u_key}")
-    Session findByValue(String u_key);
+    Session findByValue(@Param("u_key") String u_key);
 
     @Insert("insert into session (u_key, u_value) values (#{u_key}, #{u_value})")
     @Options(useGeneratedKeys = true,keyProperty = "id")

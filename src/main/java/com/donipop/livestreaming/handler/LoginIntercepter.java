@@ -16,33 +16,25 @@ import javax.servlet.http.HttpServletResponse;
 @Log4j2
 @Component
 public class LoginIntercepter implements HandlerInterceptor {
-
-
+    @Autowired
     private SessionService sessionService;
+
     //controller에 넘기기전
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
-        String loginSession = (String) request.getSession().getAttribute("loginID");
+        String u_key = (String) request.getSession().getAttribute("loginID");
 
-        //System.out.println(loginSession);
-        if (loginSession != null){
-            log.info("세션있음");
-            log.info(loginSession);
+        Session ss = new Session();
+        ss = sessionService.findByValue(u_key);
+        log.info(ss.getU_value());
+
+
+        if(u_key != null){
             //세션있음
-            Session ss = sessionService.findByValue(loginSession);
-            log.info("여기도 나오나?");
-            //ss = sessionService.findByValue(loginSession);
-            System.out.println(ss.getU_value());
-            //ss.setU_key(sessionService.createSession());
-            //sessionService.update(ss);
-            return true;
         }else{
-            log.info("세션없음");
             //세션없음
-
         }
-
         return true;
     }
     //controller가 처리를 마친후
@@ -54,5 +46,6 @@ public class LoginIntercepter implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler,
                                 @Nullable Exception ex) throws Exception {
+
     }
 }

@@ -16,21 +16,21 @@ import javax.servlet.http.HttpSession;
 @Controller
 @Log4j2
 public class LoginController {
-
     @Autowired
     private LoginService loginService;
     @Autowired
     private SessionService sessionService;
+
     @GetMapping("login")
     public String loginGET(){
+
         return "login";
     }
     @PostMapping("login")
     public ModelAndView loginPOST(User user, HttpSession session){
         log.info(user.getUser_id() + " 로그인 요청");
-        //log.info(loginService.login(user));
-
         ModelAndView mv = new ModelAndView();
+
         if(loginService.login(user) == null){
             mv.setViewName("/login");
             mv.addObject("logindata","로그인 실패");
