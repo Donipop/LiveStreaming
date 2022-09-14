@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
 @SpringBootApplication
-@MapperScan(basePackages = "com.donipop.livestreaming")
+@MapperScan(basePackages = "com.donipop.livestreaming.model.mapper")
 public class LiveStreamingApplication {
     public static void main(String[] args) {
         SpringApplication.run(LiveStreamingApplication.class, args);
