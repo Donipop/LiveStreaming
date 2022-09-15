@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -82,31 +82,26 @@
             });
         }
 
-        function addChat(value){
-            const obj = document.getElementById("chat-ul");
-            let clone_chat = $('#messager li').clone();
-
-            let me = `<div class="messager right">Messager(Messager123)</div>` +
-            `<span class="list-unstyled right">${value}</span>`;
-            clone_chat.children().html(me);
-
-            clone_chat.appendTo(obj);
-            console.log(value);
-            reti();
-            $("textarea").val('');
-        }
-
-        $("body").delegate("textarea", "keyup",function(e){
-            if(e.which == 13){
-                if(!e.shiftKey){
-                    //alert(e.target.value);
-                    wsSend(e.target.value);
-
-                }
-            }
-        })
 
         connect();
+    </script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/ /*]]>*/
+
+            $("body").delegate("textarea", "keyup",function(e){
+                if(e.which == 13){
+                    if(!e.shiftKey){
+                        if([[${UserIn}]] != null){
+                        //alert(e.target.value);
+                        wsSend(e.target.value,[[${UserIn}]]);
+                        }else{
+                            alert('로그인이 필요합니다.');
+                        }
+                    }
+                }
+            });
+
+
     </script>
 </body>
 </html>

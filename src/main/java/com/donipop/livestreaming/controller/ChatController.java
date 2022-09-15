@@ -13,10 +13,7 @@ public class ChatController{
     //@RequestMapping("/chat")
     @GetMapping("/chat")
     public String chat(){
-        /*ModelAndView mv = new ModelAndView();
-        mv.setViewName("chat"); //연결될 html
-        return mv;*/
-        //System.out.println("@Chat");
+
         return "chat";
     }
 }

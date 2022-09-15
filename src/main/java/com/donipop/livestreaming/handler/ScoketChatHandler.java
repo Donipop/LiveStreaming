@@ -1,14 +1,16 @@
 package com.donipop.livestreaming.handler;
 
 import lombok.extern.log4j.Log4j2;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Component
@@ -21,9 +23,15 @@ public class ScoketChatHandler extends TextWebSocketHandler {
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         String payload = message.getPayload();
         log.info("payload : " + payload);
-
+        JSONParser jsonParser = new JSONParser();
+        JSONObject msg = (JSONObject) jsonParser.parse(payload);
+        //Object t = new Object();
+        log.info(msg.get("text"));
+        Object obj = new Object();
+        obj = msg;
         for(WebSocketSession sess: list) {
-            sess.sendMessage(message);
+            sess.sendMessage(new TextMessage(msg.toJSONString()));
+            //sess.sendMessage(message);
         }
     }
     /* Client가 접속 시 호출되는 메서드 */
