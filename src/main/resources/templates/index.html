@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -54,22 +54,23 @@
         <article class="py-5 text-center container">
             <div class="row py-lg-5">
               <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light text-light">123</h1>
-                <p class="lead text-muted">456</p>
-                <p>
-                  <a href="#" class="btn btn-primary my-2">789</a>
-                  <a href="#" class="btn btn-secondary my-2">0123</a>
-                </p>
+                  <h1 class="fw-light text-light" th:if="${UserIn != null}" th:text="${UserIn.getUser_nick()}"></h1>
+                  <h1 class="fw-light text-light" th:unless="${UserIn != null}" th:text="로그인 안함"></h1>
+                  <p class="lead text-muted">456</p>
+                  <p>
+                     <a href="#" class="btn btn-primary my-2">789</a>
+                     <a href="#" class="btn btn-secondary my-2">0123</a>
+                  </p>
               </div>
             </div>
         </article>
         <!-- 방송목록 -->
         <article class="container d-inline-block text-center">
             <div class="card bg-dark text-light mx-1 d-inline-block" style="width: 18rem;" id="card">
-                <img src="../static/img/live_user_jingburger-440x248.jpg" class="card-img-top" alt="123123">
+                <img src="../static/img/live_user_matarzzz-440x248.jpg" class="card-img-top" alt="123123">
                 <div class="card-body">
                     <div class="img-round">
-                        <img src="../static/img/330b695d-63ec-41cb-baca-a191a7bbc441-profile_image-70x70.png" class="profile">
+                        <img src="../static/img/dea48a2d-26b5-48fc-9904-19ce38092e98-profile_image-50x50.png" class="profile">
                     </div>
                     <div class="card-body2">
                         <h5 class="card-title text-lg-start">제목</h5>
@@ -78,10 +79,10 @@
                 </div>
             </div>
             <div class="card bg-dark text-light mx-1 d-inline-block" style="width: 18rem;" id="card">
-                <img src="../static/img/live_user_jingburger-440x248.jpg" class="card-img-top">
+                <img src="../static/img/live_user_matarzzz-440x248.jpg" class="card-img-top">
                 <div class="card-body">
                     <div class="img-round">
-                        <img src="../static/img/330b695d-63ec-41cb-baca-a191a7bbc441-profile_image-70x70.png" class="profile" alt="방송이미지">
+                        <img src="../static/img/dea48a2d-26b5-48fc-9904-19ce38092e98-profile_image-50x50.png" class="profile" alt="방송이미지">
                     </div>
                     <div class="card-body2">
                         <h5 class="card-title text-lg-start">제목</h5>

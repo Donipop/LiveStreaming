@@ -1,6 +1,7 @@
 package com.donipop.livestreaming.model.service;
 
 import com.donipop.livestreaming.model.dto.Session;
+import com.donipop.livestreaming.model.dto.User;
 import com.donipop.livestreaming.model.mapper.SessionMapper;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,6 @@ public class SessionService {
     }
 
     public Session findByValue(String u_key){
-        log.info("u_key : " + u_key);
         return this.sessionMapper.findByValue(u_key);
     }
 

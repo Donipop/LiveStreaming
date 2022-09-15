@@ -23,7 +23,7 @@ public class LoginController {
 
     @GetMapping("login")
     public String loginGET(){
-
+        //log.info();
         return "login";
     }
     @PostMapping("login")
@@ -38,7 +38,7 @@ public class LoginController {
             String uuid = sessionService.createSession();
             Session ss = new Session();
             ss.setU_key(uuid);
-            ss.setU_value(user.getUser_id() + "/" + user.getUser_nick());
+            ss.setU_value(user.getUser_id());
             sessionService.save(ss);
 
             session.setAttribute("loginID",uuid);

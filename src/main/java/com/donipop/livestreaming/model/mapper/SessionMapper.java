@@ -1,6 +1,7 @@
 package com.donipop.livestreaming.model.mapper;
 
 import com.donipop.livestreaming.model.dto.Session;
+import com.donipop.livestreaming.model.dto.User;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
