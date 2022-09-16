@@ -42,16 +42,44 @@ function wsGet(){
                 id = msg.id;
                 break;
         }
+
+        let messageValue = {
+            text: text,
+            id: id,
+            nick: nick
+        }
+        console.log(id + "/!/" + User.user_id);
+        if(User.user_id == id){
+            console.log("message실행")
+            addChat(messageValue,"messager");
+        }else if(User.user_id != id){
+            console.log("sender실행")
+            addChat(messageValue, "sender");
+        }
         //console.log(text);
     }
 }
 
-function addChat(value){
+function addChat(value,type){
     const obj = document.getElementById("chat-ul");
     let clone_chat = $('#messager li').clone();
 
-    let me = `<div class="messager right">Messager(Messager123)</div>` +
-        `<span class="list-unstyled right">${value}</span>`;
+    let me = '';
+        switch(type){
+            case "messager":
+                me =  `<div class="messager right">${value.nick}(${value.id})</div>` +
+                    `<span class="list-unstyled right">${value.text}</span>`;
+                break;
+            case "sender":
+                me = `<div class="sender left">${value.nick}(${value.id})</div>` +
+                `<span class="list-unstyled left">${value.text}</span>`;
+                break;
+            case "bangjang":
+                me = `<div class="sender left bj">${value.nick}(${value.id})</div>` +
+                `<span class="list-unstyled left">${value.text}</span>`;
+                break;
+        }
+
     clone_chat.children().html(me);
 
     clone_chat.appendTo(obj);

@@ -19,6 +19,7 @@
         <script src="/static/js/chat.js"></script>
 </head>
 <body>
+
     <div class="container">
         <div class="chat bg-dark">
             <ul id="chat-ul">
@@ -40,7 +41,6 @@
                         <div class="messager right">Messager(Messager123)</div>
                         <span class="list-unstyled right">나의 메세지</span>
                     </div>
-
                 </li>
 
 
@@ -87,13 +87,17 @@
     </script>
     <script th:inline="javascript">
         /*<![CDATA[*/ /*]]>*/
-
-            $("body").delegate("textarea", "keyup",function(e){
+            let User = [[${UserIn}]];
+        $("body").delegate("textarea", "keyup",function(e){
                 if(e.which == 13){
                     if(!e.shiftKey){
-                        if([[${UserIn}]] != null){
-                        //alert(e.target.value);
-                        wsSend(e.target.value,[[${UserIn}]]);
+                        if(User.user_id != null){
+                            if(e.target.value.replace(/(?:\n\r|\n|\r)/g,"") != ""){
+                                wsSend(e.target.value,User);
+                            }else{
+                                e.target.value = "";
+                                alert('아무 글자도 없이 보낼 수 없습니다.')
+                            }
                         }else{
                             alert('로그인이 필요합니다.');
                         }
