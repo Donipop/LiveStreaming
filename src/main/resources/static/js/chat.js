@@ -84,6 +84,7 @@ function addChat(value,type){
 
     clone_chat.appendTo(obj);
     //console.log(value);
-    reti();
+    //reti();
     $("textarea").val('');
+    tippy_func();
 }

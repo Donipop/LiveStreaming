@@ -42,6 +42,12 @@
                         <span class="list-unstyled right">나의 메세지</span>
                     </div>
                 </li>
+                <li>
+                    <div class="chat_div">
+                        <div class="messager right">Messager(Messager123)</div>
+                        <span class="list-unstyled right">나의 메세지</span>
+                    </div>
+                </li>
 
 
             </ul>
@@ -53,10 +59,6 @@
 
     <div id="t-profile" style="display: none;">
         <div class="tippy-profile">
-            <div class="icon">
-                <img class="img-round" src="../static/img/330b695d-63ec-41cb-baca-a191a7bbc441-profile_image-70x70.png">
-            </div>
-            <a href="#"><h1>messager(messagerid)</h1></a>
         </div>
     </div>
 
@@ -67,15 +69,74 @@
         </li>
     </div>
     <script>
-        reti();
-        function reti(){
-            const template = document.getElementById('t-profile');
-            tippy('.chat ul .messager,.sender', {
-            content: template.innerHTML, 
+        let value = {
+            user_id: '',
+            image: '',
+            target: null,
+            profile: ''
+        }
+        tippy_func(value)
+
+        $( document ).ready( function() {
+            $('.chat ul .messager, .sender').hover(function (e){
+                //console.log(tippyInstance)
+                //console.log(e.target.textContent);
+                value.user_id = e.target.textContent
+                value.image = '330b695d-63ec-41cb-baca-a191a7bbc441-profile_image-70x70';
+                value.target = e.target
+                value.profile = `<div class="tippy-profile"><div class="icon">` +
+                    `<img class="img-round" src="../static/img/${value.image}.png">`+
+                    `</div><a href="#"><h1>${value.user_id}</h1></a></div>`;
+
+
+
+            });
+        })
+
+        function tippy_func(value){
+            const tippyInstance = tippy(document.getElementsByClassName('.chat ul .messager, .sender'));
+            tippyInstance.setProps({
+                content: value.profile,
+                allowHTML: true,
+                placement: 'top-start',
+                animation: "shift-away",
+                trigger: 'click', 		// :hover가 아닌 click시 노출
+                arrow: false,
+                interactive: true,      // message내용 상호작용 가능
+                theme: 'puple',
+            })
+        }
+
+
+
+        function reti(value){
+            const obj = document.getElementById('t-profile');
+            let clone_temp = $('#t-profile').clone();
+            let profile = null;
+            if(value != null){
+                profile = `<div class="tippy-profile"><div class="icon">` +
+                    `<img class="img-round" src="../static/img/${value.image}.png">`+
+                    `</div><a href="#"><h1>${value.user_id}</h1></a></div>`;
+                console.log("reti: 안쪽 " + value.image + " / " + value.user_id);
+            }else{
+                console.log("null!");
+            }
+
+
+            /*let profile = `<div class="tippy-profile"><div class="icon">` +
+                `<img class="img-round" src="../static/img/330b695d-63ec-41cb-baca-a191a7bbc441-profile_image-70x70.png">`+
+                `</div><a href="#"><h1>nick(id)</h1></a></div>`;*/
+            //330b695d-63ec-41cb-baca-a191a7bbc441-profile_image-70x70
+
+            clone_temp.children().html(profile);
+            //clone_temp.appendTo(obj);
+
+            tippy('.chat ul .messager, .sender', {
+            content: profile,
             allowHTML: true,
             placement: 'top-start',
             animation: "shift-away",
-            trigger: 'click', 		// :hover가 아닌 click시 노출
+            //trigger: 'manual', 		// :hover가 아닌 click시 노출
             arrow: false,
             interactive: true,      // message내용 상호작용 가능
             theme: 'puple',
