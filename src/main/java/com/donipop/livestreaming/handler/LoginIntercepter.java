@@ -60,13 +60,14 @@ public class LoginIntercepter implements HandlerInterceptor {
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
                            @Nullable ModelAndView modelAndView) throws Exception {
-        User user;
+        User user = new User();
         if(request.getSession().getAttribute("loginID") != null){
             user = loginService.findByUserID(sessionService.findByValue((String) request.getSession().getAttribute("loginID")).getU_value());
             user.setUser_pw("*");
+            System.out.println(user);
             modelAndView.addObject("UserIn", user);
         }else{
-            modelAndView.addObject("UserIn",new User());
+            modelAndView.addObject("UserIn",user);
         }
 
     }

@@ -9,14 +9,17 @@
         <!-- bootstrap -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"/>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="/static/js/chat.js"></script>
+        <script src="https://unpkg.com/jquery@3.6.1/dist/jquery.js"></script>
+
         <!-- tippy animation css -->
         <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale-extreme.css"/>
         <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/shift-away.css"/>
         <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/dist/backdrop.css"/>
-        <script src="https://unpkg.com/@popperjs/core@2"></script><!-- tippy 사용 위한 연결-->
-        <script src="https://unpkg.com/tippy.js@6"></script><!-- tippy 사용 위한 연결-->
-        <script src="https://unpkg.com/jquery@3.6.1/dist/jquery.js"></script>
-        <script src="/static/js/chat.js"></script>
+        <!--<script src="https://unpkg.com/@popperjs/core@2"></script>&lt;!&ndash; tippy 사용 위한 연결&ndash;&gt;
+        <script src="https://unpkg.com/tippy.js@6"></script>&lt;!&ndash; tippy 사용 위한 연결&ndash;&gt;-->
+        <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+        <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
 </head>
 <body>
 
@@ -25,27 +28,43 @@
             <ul id="chat-ul">
                 <li>
                     <div class="chat_div">
-                        <div class="sender left">Sender2(snder123)</div>
-                        <span class="list-unstyled left">상대방 메세지</span>
+                        <div class="user">
+                            <div class="sender left">Sender2(snder123)</div>
+                            <span class="list-unstyled left">상대방 메세지</span>
+                        </div>
+
                     </div>
                 </li>
 
                 <li>
                     <div class="chat_div">
-                        <div class="sender left bj">Sender(bangjang)</div>
-                        <span class="list-unstyled left">방장 메세지</span>
+                        <div class="user">
+                            <div class="sender left bj">Sender(bangjang)</div>
+                            <span class="list-unstyled left">방장 메세지</span>
+                            <div class="pop_user">
+                                <div class="icon">
+                                    <img class="img-round" src="../static/img/330b695d-63ec-41cb-baca-a191a7bbc441-profile_image-70x70.png">
+                                </div>
+                                <a href="#"><h1>Sender(bangjang)</h1></a>
+                            </div>
+                        </div>
                     </div>
                 </li>
                 <li>
                     <div class="chat_div">
-                        <div class="messager right">Messager(Messager123)</div>
-                        <span class="list-unstyled right">나의 메세지</span>
+                        <div class="user">
+                            <div class="messager right">Messager(Messager123)</div>
+                            <span class="list-unstyled right">나의 메세지</span>
+                        </div>
+
                     </div>
                 </li>
                 <li>
                     <div class="chat_div">
-                        <div class="messager right">Messager(Messager123)</div>
-                        <span class="list-unstyled right">나의 메세지</span>
+                        <div class="user">
+                            <div class="messager right">Messager(Messager123)</div>
+                            <span class="list-unstyled right">나의 메세지</span>
+                        </div>
                     </div>
                 </li>
 
@@ -68,87 +87,37 @@
             </div>
         </li>
     </div>
-    <script>
+
+
+
+    <script type="text/javascript">
         let value = {
             user_id: '',
             image: '',
-            target: null,
             profile: ''
         }
-        tippy_func(value)
-
         $( document ).ready( function() {
-            $('.chat ul .messager, .sender').hover(function (e){
-                //console.log(tippyInstance)
-                //console.log(e.target.textContent);
+            $('.chat ul .user .messager, .sender').click(function (e){
                 value.user_id = e.target.textContent
                 value.image = '330b695d-63ec-41cb-baca-a191a7bbc441-profile_image-70x70';
                 value.target = e.target
-                value.profile = `<div class="tippy-profile"><div class="icon">` +
+                value.profile = `<div class="icon">` +
                     `<img class="img-round" src="../static/img/${value.image}.png">`+
-                    `</div><a href="#"><h1>${value.user_id}</h1></a></div>`;
-
-
-
+                    `</div><a href="#"><h1>${value.user_id}</h1></a>`;
+                //console.log(e);//.target.parentElement
+                //console.log(e.currentTarget);
+                let aa = $(this).parent().children('.pop_user').html(value.profile);
+                $(this).parent().children('.pop_user').appendTo(aa);
+                //zindex 수정해서 제일앞에 나오게 하고
+                //div css수정해서 새로운 팝업창처럼 띄우게끔 해야함~
             });
         })
-
-        function tippy_func(value){
-            const tippyInstance = tippy(document.getElementsByClassName('.chat ul .messager, .sender'));
-            tippyInstance.setProps({
-                content: value.profile,
-                allowHTML: true,
-                placement: 'top-start',
-                animation: "shift-away",
-                trigger: 'click', 		// :hover가 아닌 click시 노출
-                arrow: false,
-                interactive: true,      // message내용 상호작용 가능
-                theme: 'puple',
-            })
-        }
-
-
-
-        function reti(value){
-            const obj = document.getElementById('t-profile');
-            let clone_temp = $('#t-profile').clone();
-            let profile = null;
-            if(value != null){
-                profile = `<div class="tippy-profile"><div class="icon">` +
-                    `<img class="img-round" src="../static/img/${value.image}.png">`+
-                    `</div><a href="#"><h1>${value.user_id}</h1></a></div>`;
-                console.log("reti: 안쪽 " + value.image + " / " + value.user_id);
-            }else{
-                console.log("null!");
-            }
-
-
-            /*let profile = `<div class="tippy-profile"><div class="icon">` +
-                `<img class="img-round" src="../static/img/330b695d-63ec-41cb-baca-a191a7bbc441-profile_image-70x70.png">`+
-                `</div><a href="#"><h1>nick(id)</h1></a></div>`;*/
-            //330b695d-63ec-41cb-baca-a191a7bbc441-profile_image-70x70
-
-            clone_temp.children().html(profile);
-            //clone_temp.appendTo(obj);
-
-            tippy('.chat ul .messager, .sender', {
-            content: profile,
-            allowHTML: true,
-            placement: 'top-start',
-            animation: "shift-away",
-            //trigger: 'manual', 		// :hover가 아닌 click시 노출
-            arrow: false,
-            interactive: true,      // message내용 상호작용 가능
-            theme: 'puple',
-            });
-        }
-
-
         connect();
     </script>
+
     <script th:inline="javascript">
         /*<![CDATA[*/ /*]]>*/
-            let User = [[${UserIn}]];
+            /*let User = [[${UserIn}]];
         $("body").delegate("textarea", "keyup",function(e){
                 if(e.which == 13){
                     if(!e.shiftKey){
@@ -164,9 +133,7 @@
                         }
                     }
                 }
-            });
-
-
+            });*/
     </script>
 </body>
 </html>
