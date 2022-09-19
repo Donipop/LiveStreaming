@@ -67,10 +67,10 @@
 
 .pop_user{
     border: 1px solid;
-    width: auto;
+    width: 240px;
     height: 100%;
     background-color: palevioletred;
-    display: inline-block;
+    display:none;
     z-index: 9999;
 }
 .pop_user .icon{
@@ -81,10 +81,23 @@
     background-color: gainsboro;
     border-radius: 70%;
     overflow: hidden;
-    width: 30px;
+    width: 40px;
 }
 .pop_user a h1{
     font-size: 12pt;
     display: inline-block;
     margin-left: 10px;
+}
+.pop_user .pop_title{
+    border-bottom: 1px solid;
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform: scaleX(-1);
+}
+.pop_title .pop_close svg{
+    fill: whitesmoke;
+}
+.pop_title .pop_close svg:hover{
+    fill: black;
 }

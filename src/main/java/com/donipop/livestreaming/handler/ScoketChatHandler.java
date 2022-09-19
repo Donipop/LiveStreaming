@@ -27,8 +27,6 @@ public class ScoketChatHandler extends TextWebSocketHandler {
         JSONObject msg = (JSONObject) jsonParser.parse(payload);
         //Object t = new Object();
         log.info(msg.get("text"));
-        Object obj = new Object();
-        obj = msg;
         for(WebSocketSession sess: list) {
             sess.sendMessage(new TextMessage(msg.toJSONString()));
             //sess.sendMessage(message);

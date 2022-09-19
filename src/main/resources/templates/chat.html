@@ -31,6 +31,8 @@
                         <div class="user">
                             <div class="sender left">Sender2(snder123)</div>
                             <span class="list-unstyled left">상대방 메세지</span>
+                            <div class="pop_user">
+                            </div>
                         </div>
 
                     </div>
@@ -42,10 +44,6 @@
                             <div class="sender left bj">Sender(bangjang)</div>
                             <span class="list-unstyled left">방장 메세지</span>
                             <div class="pop_user">
-                                <div class="icon">
-                                    <img class="img-round" src="../static/img/330b695d-63ec-41cb-baca-a191a7bbc441-profile_image-70x70.png">
-                                </div>
-                                <a href="#"><h1>Sender(bangjang)</h1></a>
                             </div>
                         </div>
                     </div>
@@ -55,6 +53,8 @@
                         <div class="user">
                             <div class="messager right">Messager(Messager123)</div>
                             <span class="list-unstyled right">나의 메세지</span>
+                            <div class="pop_user">
+                            </div>
                         </div>
 
                     </div>
@@ -64,6 +64,8 @@
                         <div class="user">
                             <div class="messager right">Messager(Messager123)</div>
                             <span class="list-unstyled right">나의 메세지</span>
+                            <div class="pop_user">
+                            </div>
                         </div>
                     </div>
                 </li>
@@ -96,28 +98,41 @@
             image: '',
             profile: ''
         }
-        $( document ).ready( function() {
-            $('.chat ul .user .messager, .sender').click(function (e){
-                value.user_id = e.target.textContent
-                value.image = '330b695d-63ec-41cb-baca-a191a7bbc441-profile_image-70x70';
-                value.target = e.target
-                value.profile = `<div class="icon">` +
-                    `<img class="img-round" src="../static/img/${value.image}.png">`+
-                    `</div><a href="#"><h1>${value.user_id}</h1></a>`;
-                //console.log(e);//.target.parentElement
-                //console.log(e.currentTarget);
-                let aa = $(this).parent().children('.pop_user').html(value.profile);
-                $(this).parent().children('.pop_user').appendTo(aa);
-                //zindex 수정해서 제일앞에 나오게 하고
-                //div css수정해서 새로운 팝업창처럼 띄우게끔 해야함~
-            });
-        })
+        function getmessage(){
+            $( document ).ready( function() {
+                $('.chat ul .user .messager, .sender').click(function (e){
+                    value.user_id = e.target.textContent
+                    value.image = 'dde955e8-5fae-44dc-98db-79b3b14afea2-profile_image-70x70';
+                    value.target = e.target
+                    value.profile = `<div class="pop_title">`
+                        + `<div class="pop_close" type='button' onclick='pop_closebnt(this)'>`
+                        + `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">`
+                        +`<path class='x_color' d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>`
+                        +`</svg></div></div><div class="icon"><img class="img-round" src="../static/img/${value.image}.png"></div><a href="#"><h1>${value.user_id}</h1></a>`;
+                    //console.log(e);//.target.parentElement
+                    //console.log(e.currentTarget);
+                    let aa = $(this).parent().children('.pop_user').html(value.profile);
+                    $(this).parent().children('.pop_user').appendTo(aa);
+                    $(this).parent().children('.pop_user').css({"display": "inline-block"})
+                    //zindex 수정해서 제일앞에 나오게 하고
+                    //div css수정해서 새로운 팝업창처럼 띄우게끔 해야함~
+                });
+            })
+        }
+
+
         connect();
+        getmessage();
+        function pop_closebnt(e){
+            parent = $(e).parent().parent();
+            parent.html('');
+            parent.css({"display": "none"})
+        }
     </script>
 
     <script th:inline="javascript">
         /*<![CDATA[*/ /*]]>*/
-            /*let User = [[${UserIn}]];
+            let User = [[${UserIn}]];
         $("body").delegate("textarea", "keyup",function(e){
                 if(e.which == 13){
                     if(!e.shiftKey){
@@ -133,7 +148,7 @@
                         }
                     }
                 }
-            });*/
+            });
     </script>
 </body>
 </html>
