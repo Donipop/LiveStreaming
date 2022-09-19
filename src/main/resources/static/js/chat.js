@@ -2,25 +2,33 @@ let ws = null;
 
 function connect(){
     ws = new WebSocket("ws://" + location.host + "/ws/chat");
-    wsEvent();
+    let channelID = location.href.split('/chat/')[1];
+    wsEvent(channelID);
     wsGet();
 }
 
-function wsEvent() {
+function wsEvent(channelID) {
     ws.onopen = function (data){
         //소켓이 열리면 동작
         console.log("소켓열림");
+        let msg = {
+            type: "join",
+            id: User.user_id,
+            nick: User.user_nick,
+            channelID: channelID
+        };
+        ws.send(JSON.stringify(msg));
     }
 }
 
-function wsSend(message,UserIn){
+function wsSend(message,UserIn,channelID){
     let msg = {
         type: "message",
         text: message.trim(),
         id: UserIn.user_id,
-        nick: UserIn.user_nick
+        nick: UserIn.user_nick,
+        channelID: channelID
     };
-
     ws.send(JSON.stringify(msg));
     //addChat(msg.text.replace(/(?:\r\n|\r|\n)/g,"<br>"));
 }
@@ -88,4 +96,20 @@ function addChat(value,type){
     clone_chat.children().html(me);
     clone_chat.appendTo(obj);
     getmessage();
+}
+
+function test1(number){
+    let channelID = location.href.split('/chat/')[1];
+    switch (number){
+        case 1:
+            let msg = {
+                type: 'userlist',
+                channelID: channelID,
+            }
+            ws.send(msg);
+            break;
+        case 2:
+            ws.send();
+            break;
+    }
 }

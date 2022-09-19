@@ -64,7 +64,7 @@ public class LoginIntercepter implements HandlerInterceptor {
         if(request.getSession().getAttribute("loginID") != null){
             user = loginService.findByUserID(sessionService.findByValue((String) request.getSession().getAttribute("loginID")).getU_value());
             user.setUser_pw("*");
-            System.out.println(user);
+            log.info(user);
             modelAndView.addObject("UserIn", user);
         }else{
             modelAndView.addObject("UserIn",user);
