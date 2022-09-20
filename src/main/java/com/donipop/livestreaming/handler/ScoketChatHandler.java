@@ -17,22 +17,19 @@ import java.util.List;
 @Component
 @Log4j2
 public class ScoketChatHandler extends TextWebSocketHandler {
-
     private static List<WebSocketSession> list = new ArrayList<>();
     private ChatChnnelConfig chatChnnelConfig = new ChatChnnelConfig();
-    private ChatSocketSession chatSocketSession = new ChatSocketSession();
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         String payload = message.getPayload();
-        log.info("payload : " + payload);
+        //log.info("payload : " + payload);
         JSONParser jsonParser = new JSONParser();
         JSONObject msg = (JSONObject) jsonParser.parse(payload);
-
-
-
         String type = String.valueOf(msg.get("type"));
+        ChatSocketSession chatSocketSession = new ChatSocketSession();
+
         if(type.equals("join")){
-            log.info("쪼인");
+            //log.info("쪼인");
             chatSocketSession.setSession(session);
             chatSocketSession.setChannelID(String.valueOf(msg.get("channelID")));
             chatSocketSession.setUserID(String.valueOf(msg.get("id")));
@@ -57,10 +54,11 @@ public class ScoketChatHandler extends TextWebSocketHandler {
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 
-        list.add(session);
+        //list.add(session);
 
-        log.info(session + " 클라이언트 접속 : " + session.getUri());
+        //log.info(session + " 클라이언트 접속 : " + session.getUri());
         //chatChnnelConfig.channeljoin()
+        //log.info(session);
     }
     /* Client가 접속 해제 시 호출되는 메서드드 */
 
@@ -69,6 +67,9 @@ public class ScoketChatHandler extends TextWebSocketHandler {
 
         log.info(session + " 클라이언트 접속 해제");
         list.remove(session);
+        log.info(status);
+
+        //chatChnnelConfig.channelout(session);
     }
 
 }

@@ -51,7 +51,7 @@ public class LoginIntercepter implements HandlerInterceptor {
                 request.setAttribute("loginID","");
             }
         }else{
-            log.info("세션없음");
+            //log.info("세션없음");
             //세션없음
         }
         return true;

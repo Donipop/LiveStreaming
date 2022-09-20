@@ -106,7 +106,7 @@ function test1(number){
                 type: 'userlist',
                 channelID: channelID,
             }
-            ws.send(msg);
+            ws.send(JSON.stringify(msg));
             break;
         case 2:
             ws.send();

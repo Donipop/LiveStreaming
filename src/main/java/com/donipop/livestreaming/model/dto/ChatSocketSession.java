@@ -5,13 +5,18 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.web.socket.WebSocketSession;
 
+
 @Getter
 @Setter
 @ToString
-public class ChatSocketSession {
+public class ChatSocketSession{
     private WebSocketSession session;
     private String channelID;
     private String UserID;
     private String Username;
+
+    public ChatSocketSession() {
+    }
+
 }
 

@@ -15,12 +15,10 @@ public class ChatController{
     //@RequestMapping("/chat")
     @GetMapping("/chat")
     public String chat(){
-
         return "chat";
     }
     @GetMapping("/chat/{channel}")
     public String chats(@PathVariable String channel){
-        log.info(channel);
         return "/chat";
     }
 }
