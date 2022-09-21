@@ -100,16 +100,20 @@ function addChat(value,type){
 
 function test1(number){
     let channelID = location.href.split('/chat/')[1];
+    let msg = {}
     switch (number){
         case 1:
-            let msg = {
+            msg = {
                 type: 'userlist',
                 channelID: channelID,
             }
             ws.send(JSON.stringify(msg));
             break;
         case 2:
-            ws.send();
+            msg ={
+                type: 'channelList',
+            }
+            ws.send(JSON.stringify(msg));
             break;
     }
 }

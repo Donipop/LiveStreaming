@@ -41,6 +41,10 @@ public class ScoketChatHandler extends TextWebSocketHandler {
             for(ChatSocketSession temp : chatChnnelConfig.channel_userList(String.valueOf(msg.get("channelID")))){
                 log.info(temp.toString());
             }
+        }else if(type.equals("channelList")){
+            for(String temp : chatChnnelConfig.channelList()){
+                log.info(temp);
+            }
         }
 
         //Object t = new Object();
@@ -67,7 +71,7 @@ public class ScoketChatHandler extends TextWebSocketHandler {
 
         log.info(session + " 클라이언트 접속 해제");
         list.remove(session);
-        log.info(status);
+        chatChnnelConfig.channelleave(session);
 
         //chatChnnelConfig.channelout(session);
     }
