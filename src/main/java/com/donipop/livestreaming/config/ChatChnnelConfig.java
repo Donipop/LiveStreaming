@@ -32,12 +32,10 @@ public class ChatChnnelConfig {
         }
     }
     public List<ChatSocketSession> channel_userList(String channelID){
-        channel_member_list = channel.get(channelID);
-        return channel_member_list;
+        return channel.get(channelID);
     }
     public List<String> channelList(){
-        List<String> keyList = new ArrayList<>(channel.keySet());
-        return keyList;
+        return new ArrayList<>(channel.keySet());
     }
     private void usersession_add(ChatSocketSession chatSocketSession){
         if(usersession.containsKey(chatSocketSession.getSession())){
