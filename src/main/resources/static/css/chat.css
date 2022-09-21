@@ -101,3 +101,9 @@
 .pop_title .pop_close svg:hover{
     fill: black;
 }
+.chat-title{
+    border-bottom:1px solid whitesmoke;
+    background-color: black;
+    width: 500px;
+    height: 60px;
+}

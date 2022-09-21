@@ -117,3 +117,12 @@ function test1(number){
             break;
     }
 }
+
+function getChatMemberID(channelID)//채팅방에 있는 사람들의 ID를 가져옴
+{
+    let msg = {
+        type: 'userlist',
+        channelID: channelID,
+    }
+    ws.send(JSON.stringify(msg));
+}
