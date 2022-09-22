@@ -1,19 +1,24 @@
-package com.donipop.livestreaming.config;
+package com.donipop.livestreaming.model.service;
 
 import com.donipop.livestreaming.model.dto.ChatSocketSession;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.web.socket.WebSocketSession;
 
-import java.time.temporal.Temporal;
 import java.util.*;
 
 @Log4j2
-public class ChatChnnelConfig {
+public class ChatChnnelService {
+
+    private ChatChnnelService(){}
+    private static class Singleton{
+        private static final ChatChnnelService instance = new ChatChnnelService();
+    }
+    public static ChatChnnelService getInstance(){
+        return Singleton.instance;
+    }
+
     private HashMap<String,List<ChatSocketSession>> channel = new HashMap<>();
     private List<ChatSocketSession> channel_member_list =  new ArrayList<>();
-
     private HashMap<WebSocketSession,List<ChatSocketSession>> usersession = new HashMap<>();
     private List<ChatSocketSession> user_session_list = new ArrayList<>();
     public String channeljoin(ChatSocketSession session){

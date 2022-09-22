@@ -1,6 +1,7 @@
 package com.donipop.livestreaming.handler;
 
-import com.donipop.livestreaming.config.ChatChnnelConfig;
+
+import com.donipop.livestreaming.model.service.ChatChnnelService;
 import com.donipop.livestreaming.model.dto.ChatSocketSession;
 import lombok.extern.log4j.Log4j2;
 import org.json.simple.JSONObject;
@@ -18,7 +19,7 @@ import java.util.List;
 @Log4j2
 public class ScoketChatHandler extends TextWebSocketHandler {
     private static List<WebSocketSession> list = new ArrayList<>();
-    private ChatChnnelConfig chatChnnelConfig = new ChatChnnelConfig();
+    ChatChnnelService chatChnnelService = ChatChnnelService.getInstance();
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         String payload = message.getPayload();
@@ -27,22 +28,21 @@ public class ScoketChatHandler extends TextWebSocketHandler {
         JSONObject msg = (JSONObject) jsonParser.parse(payload);
         String type = String.valueOf(msg.get("type"));
         ChatSocketSession chatSocketSession = new ChatSocketSession();
-
         if(type.equals("join")){
             //log.info("쪼인");
             chatSocketSession.setSession(session);
             chatSocketSession.setChannelID(String.valueOf(msg.get("channelID")));
             chatSocketSession.setUserID(String.valueOf(msg.get("id")));
             chatSocketSession.setUsername(String.valueOf(msg.get("nick")));
-            chatChnnelConfig.channeljoin(chatSocketSession);
+            chatChnnelService.channeljoin(chatSocketSession);
         }else if(type.equals("message")){
             log.info("메시지");
         }else if(type.equals("userlist")){
-            for(ChatSocketSession temp : chatChnnelConfig.channel_userList(String.valueOf(msg.get("channelID")))){
+            for(ChatSocketSession temp : chatChnnelService.channel_userList(String.valueOf(msg.get("channelID")))){
                 log.info(temp.toString());
             }
         }else if(type.equals("channelList")){
-            for(String temp : chatChnnelConfig.channelList()){
+            for(String temp : chatChnnelService.channelList()){
                 log.info(temp);
             }
         }
@@ -71,7 +71,7 @@ public class ScoketChatHandler extends TextWebSocketHandler {
 
         log.info(session + " 클라이언트 접속 해제");
         list.remove(session);
-        chatChnnelConfig.channelleave(session);
+        chatChnnelService.channelleave(session);
 
         //chatChnnelConfig.channelout(session);
     }

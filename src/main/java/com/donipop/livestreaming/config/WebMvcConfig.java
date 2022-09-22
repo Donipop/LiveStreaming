@@ -22,7 +22,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 //확인할 경로
                 .addPathPatterns()
                 //제외할 경로
-                .excludePathPatterns("/static/**","/error");
+                .excludePathPatterns("/static/**","/error","/api/**");
 
     }
 }
