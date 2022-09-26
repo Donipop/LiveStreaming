@@ -30,7 +30,7 @@
                 <div>
                     <h6 class="text-center">타이틀</h6>
                 </div>
-                    <button type="button" id="user_list_btn" class="btn btn-outline-light btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" id="user_list_btn" class="btn btn-outline-light btn-sm">
                         시청자
                     </button>
                     <div id="user_list">
@@ -112,10 +112,8 @@
     * if (video.canPlayType('application/vnd.apple.mpegurl')) {
         video.src = videoSrc;
     } else */
-</script>
-<script>
-$(function(){
-    $('#user_list_btn').click(function(){
+
+    $('#user_list_btn').click(function(e){
         let display = $('#user_list').css('display');
         $('#user_list').toggle(display);
         if(display == 'none'){
@@ -123,7 +121,7 @@ $(function(){
             get_user_list();
         }
     });
-})
+
 
 function get_user_list(){
     let path = location.pathname.split(/view.html\/|view\//g)
@@ -133,6 +131,7 @@ function get_user_list(){
         console.log(path[1] + " 채널");
     }
 }
+
 let value = {
     user_id: '',
     image: '',
