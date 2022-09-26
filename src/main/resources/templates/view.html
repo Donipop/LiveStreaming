@@ -2,23 +2,195 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Title</title>
-  <link rel="stylesheet" type="text/css" href="/static/css/view.css">
-  <!-- bootstrap -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"/>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://unpkg.com/jquery@3.6.1/dist/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
+    <!-- Or if you want the latest version from the main branch -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/hls.js@canary"></script> -->
+    <link rel="stylesheet" type="text/css" href="/static/css/view.css">
+    <script src="/static/js/chat.js"></script>
+    <script src="https://unpkg.com/jquery@3.6.1/dist/jquery.js"></script>
 
-  <!-- tippy animation css -->
-  <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale-extreme.css"/>
-  <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/shift-away.css"/>
-  <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/dist/backdrop.css"/>
-  <!--<script src="https://unpkg.com/@popperjs/core@2"></script>&lt;!&ndash; tippy 사용 위한 연결&ndash;&gt;
-  <script src="https://unpkg.com/tippy.js@6"></script>&lt;!&ndash; tippy 사용 위한 연결&ndash;&gt;-->
-  <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
-  <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </head>
 <body>
+    <nav class="navbar navbar-expand navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/index">Home</a>
+        </div>
+    </nav>
 
+    <div class="video_box">
+        <video controls autoplay id="video"></video>
+    </div>
+        <div class="chat bg-dark">
+            <div class="chat-title bg-dark">
+                <div>
+                    <h6 class="text-center">타이틀</h6>
+                </div>
+                    <button type="button" id="user_list_btn" class="btn btn-outline-light btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        시청자
+                    </button>
+                    <div id="user_list">
+                        <div class="user_list_div">
+                            <ul class="user_list_ul">
+                                <li>
+                                    <a href="#">사용자1</a>
+                                </li>     
+                            </ul>
+                        </div>
+                    </div>
+            </div>
+            <div class="chat_ul_div">
+                <ul id="chat-ul">
+                    <li>
+                        <div class="chat_div">
+                            <div class="user">
+                                <div class="sender left">Sender2(snder123)</div>
+                                <span class="list-unstyled left">상대방 메세지</span>
+                                <div class="pop_user">
+                                </div>
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="chat_div">
+                            <div class="user">
+                                <div class="sender left bj">Sender(bangjang)</div>
+                                <span class="list-unstyled left">방장 메세지</span>
+                                <div class="pop_user">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="chat_div">
+                            <div class="user">
+                                <div class="messager right">Messager(Messager123)</div>
+                                <span class="list-unstyled right">나의 메세지</span>
+                                <div class="pop_user">
+                                </div>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class="chat_div">
+                            <div class="user">
+                                <div class="messager right">Messager(Messager123)</div>
+                                <span class="list-unstyled right">나의 메세지</span>
+                                <div class="pop_user">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            </div>
+        <div class="div-input">
+            <textarea placeholder="Press Enter for send message."></textarea>
+        </div>
+    
+    
+
+    
+
+<script th:inline="javascript">
+    let video = document.getElementById('video');
+    let videoSrc = 'http://127.0.0.1:8000/live/doni/index.m3u8';
+    if (Hls.isSupported()) {
+        let hls = new Hls();
+        hls.loadSource(videoSrc);
+        hls.attachMedia(video);
+    }
+
+    /*
+    * if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = videoSrc;
+    } else */
+</script>
+<script>
+$(function(){
+    $('#user_list_btn').click(function(){
+        let display = $('#user_list').css('display');
+        $('#user_list').toggle(display);
+        if(display == 'none'){
+            //console.log("열림");
+            get_user_list();
+        }
+    });
+})
+
+function get_user_list(){
+    let path = location.pathname.split(/view.html\/|view\//g)
+    if(path[1] == null){
+        console.log("null채널");
+    }else{
+        console.log(path[1] + " 채널");
+    }
+}
+let value = {
+    user_id: '',
+    image: '',
+    profile: ''
+}
+function getmessage(){
+    $( document ).ready( function() {
+        $('.chat ul .user .messager, .sender').click(function (e){
+            value.user_id = e.target.textContent
+            value.image = 'dde955e8-5fae-44dc-98db-79b3b14afea2-profile_image-70x70';
+            value.target = e.target
+            value.profile = `<div class="pop_title">`
+                + `<div class="pop_close">`
+                + `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16" type='button' onclick='pop_closebnt(this)'>`
+                +`<path class='x_color' d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>`
+                +`</svg></div></div><div class="icon"><img class="img-round" src="../static/img/${value.image}.png"></div><a href="#"><h1>${value.user_id}</h1></a>`;
+            //console.log(e);//.target.parentElement
+            //console.log(e.currentTarget);
+            let aa = $(this).parent().children('.pop_user').html(value.profile);
+            $(this).parent().children('.pop_user').appendTo(aa);
+            $(this).parent().children('.pop_user').css({"display": "inline-block"})
+            //zindex 수정해서 제일앞에 나오게 하고
+            //div css수정해서 새로운 팝업창처럼 띄우게끔 해야함~
+        });
+    })
+}
+
+connect();
+getmessage();
+
+function pop_closebnt(e){
+    parent = $(e).parent().parent().parent();
+    parent.html('');
+    parent.css({"display": "none"})
+}
+</script>
+
+<script th:inline="javascript">
+        /*<![CDATA[*/ 
+            let User = [[${UserIn}]];
+        $("body").delegate("textarea", "keyup",function(e){
+                if(e.which == 13){
+                    if(!e.shiftKey){
+                        if(User.user_id != null){
+                            if(e.target.value.replace(/(?:\n\r|\n|\r)/g,"") != ""){
+                                wsSend(e.target.value,User);
+                            }else{
+                                e.target.value = "";
+                                alert('아무 글자도 없이 보낼 수 없습니다.')
+                            }
+                        }else{
+                            alert('로그인이 필요합니다.');
+                        }
+                    }
+                }
+            });
+            /*]]>*/
+    </script>
 </body>
 </html>
+
