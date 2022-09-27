@@ -2,7 +2,7 @@ let ws = null;
 
 function connect(){
     ws = new WebSocket("ws://" + location.host + "/ws/chat");
-    let channelID = location.href.split('/chat/')[1];
+    let channelID = location.href.split('/view/')[1];
     wsEvent(channelID);
     wsGet();
 }
@@ -35,6 +35,8 @@ function wsSend(message,UserIn,channelID){
 
 function wsGet(){
     ws.onmessage = function (message){
+        console.log("메세지 받음");
+        console.log(message);
         let msg = JSON.parse(message.data);
         let text = "";
         let id = "";

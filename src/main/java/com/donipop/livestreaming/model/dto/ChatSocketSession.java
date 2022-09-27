@@ -17,8 +17,7 @@ public class ChatSocketSession{
 
     @Override
     public String toString() {
-        return "ChatSocketSession{" +
-                "session=" + session.getId() +
+        return "{session=" + session.getId() +
                 ", channelID='" + channelID + '\'' +
                 ", UserID='" + UserID + '\'' +
                 ", Username='" + Username + '\'' +

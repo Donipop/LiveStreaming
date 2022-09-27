@@ -37,6 +37,12 @@ public class ScoketChatHandler extends TextWebSocketHandler {
             chatChnnelService.channeljoin(chatSocketSession);
         }else if(type.equals("message")){
             log.info("메시지");
+            System.out.println(msg);
+            for(ChatSocketSession sess : chatChnnelService.channel_userList(String.valueOf(msg.get("channelID")))){
+                sess.getSession().sendMessage(new TextMessage(msg.toJSONString()));
+
+            }
+//            session.sendMessage(message);
         }else if(type.equals("userlist")){
             for(ChatSocketSession temp : chatChnnelService.channel_userList(String.valueOf(msg.get("channelID")))){
                 log.info(temp.toString());

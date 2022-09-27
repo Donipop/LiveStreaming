@@ -95,7 +95,7 @@ video {
     text-align: right;
 }
 .chat span{
-    width: 90%;
+    width: 100%;
     display: inline-block;
 }
 .chat .messager .sender{

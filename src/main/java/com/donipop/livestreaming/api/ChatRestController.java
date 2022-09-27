@@ -6,6 +6,7 @@ import com.donipop.livestreaming.model.service.ChatChnnelService;
 import com.donipop.livestreaming.model.dto.ChatSocketSession;
 import lombok.extern.log4j.Log4j2;
 
+import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,13 +24,16 @@ public class ChatRestController {
         return "chat";
     }
     @GetMapping("/api/chat/list/{channel}")
-    public List<String> channel_user_list(@PathVariable String channel){
+    public List<Object> channel_user_list(@PathVariable String channel){
         if(chatChnnelService.channel_userList(channel) == null)
             return null;
-        List<String> userList = new ArrayList<>();
+        List<Object> userList = new ArrayList<>();
          for(ChatSocketSession temp : chatChnnelService.channel_userList(channel)){
-             userList.add(temp.toString());
-         }
+             JSONObject jsonObject = new JSONObject();
+             jsonObject.put("id",temp.getUserID());
+             jsonObject.put("name",temp.getUsername());
+                userList.add(jsonObject);
+            }
         return userList;
     }
     @GetMapping("/api/chat/list")

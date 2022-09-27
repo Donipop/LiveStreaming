@@ -13,7 +13,7 @@ public class ChatChnnelService {
     private static class Singleton{
         private static final ChatChnnelService instance = new ChatChnnelService();
     }
-    public static ChatChnnelService getInstance(){
+    public static synchronized ChatChnnelService getInstance(){
         return Singleton.instance;
     }
 
